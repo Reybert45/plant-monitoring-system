@@ -18,7 +18,7 @@
                                 </div>
                             </td>
                             <td style="vertical-align: top !important;">
-                                <h5>Plant Name: {{ $plant['name'] }}</h5>
+                                <h5>Vegetable Name: {{ $plant['name'] }}</h5>
                                 <p class="mb-0"><b>Harvested Quantity:</b> {{ $plant['quantity'] }} out of {{ $plant['plant_quantity'] }}</p>
                                 <p class="mb-0"><b>Date Harvested:</b> {{ date('m/d/Y', strtotime($plant['harvest_date'])) }}</p>
                                 <p class="mb-0"><b>Location:</b> {{ $plant['location'] }}</p>

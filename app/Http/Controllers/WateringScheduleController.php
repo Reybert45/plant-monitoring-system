@@ -10,7 +10,7 @@ class WateringScheduleController extends Controller
 {
     public function index()
     {
-        $plants_list = Plant::where('quantity', '!=', 0)->where('harvest_date', '<', date('Y-m-d'))->get();
+        $plants_list = Plant::where('quantity', '!=', 0)->where('is_harvested', 0)->get();
         return view('user/watering_schedule/index', compact('plants_list'));
     }
 

@@ -6,6 +6,7 @@ use App\Fertilizer;
 use App\HarvestedPlant;
 use App\LifeCycleStage;
 use App\Plant;
+use App\PlantRequest;
 use App\PlantStatus;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -298,48 +299,57 @@ class PlantController extends AdminBaseController
         return view('plant/fetch', compact('datatable'));
     }
 
-    public function details()
+    public function approve()
     {
         try {
             $id = \Request::get('id');
-            $plant = Plant::find($id);
-            
-            $deadline = Carbon::parse($plant->harvest_date);
-            $currentDate = Carbon::now();
-            $daysRemaining = $currentDate->diffInDays($deadline);
-            
-            $harvest_statuses_arr = ["Optimal Month", "Average Month", "Unfavorable Month"];
+            $plant_request = PlantRequest::find($id);
 
-            $harvested_plants_arr = [];
-            $harvested_plants_list = HarvestedPlant::where('plant_id', $plant->id)->get();
-            // dd($harvested_plants_list->toArray());
-            foreach($harvested_plants_list as $harvested_plant) {
-                $total_quantity = HarvestedPlant::where('plant_id', $plant->id)->whereRaw('DATE_FORMAT(harvested_date, "%Y-%m") = ?', [date('Y-m', strtotime($harvested_plant->harvested_date))])->sum('quantity');
+            $plant = Plant::firstOrCreate([
+                'name' => $plant_request->name,
+                'description' => $plant_request->description,
+                'location' => $plant_request->location,
+                'plant_status_id' => $plant_request->plant_status_id,
+                'life_cycle_stage_id' => $plant_request->life_cycle_stage_id,
+                'fertilizer_id' => $plant_request->fertilizer_id,
+            ]);
+            $plant -> quantity = $plant_request->quantity;
+            $plant -> watering_schedule = $plant_request->watering_schedule;
+            $plant -> planting_date = $plant_request->planting_date;
+            $plant -> harvest_date = $plant_request->harvest_date;
+            $plant -> sow_depth = $plant_request->sow_depth;
+            $plant -> distance_between_plants = $plant_request->distance_between_plants;
+            $plant -> lowest_temperature = $plant_request->lowest_temperature;
+            $plant -> highest_temperature = $plant_request->highest_temperature;
+            $plant -> days_before_germination = $plant_request->days_before_germination;
+            $plant -> image_url = $plant_request->image_url;
+            $plant -> created_by_id = auth()->user()->id;
+            $plant -> save();
 
-                if($total_quantity < 100) {
-                    $status = "Unfavorable Month";
-                    $percentage_qty = round(($total_quantity / 100) * 100, 0);
-                    $color = "#F9A900";
-                } else if($total_quantity >= 100 && $total_quantity <= 500) {
-                    $status = "Average Month";
-                    $percentage_qty = round(($total_quantity / 500) * 100, 0);
-                    $color = "#E2F247";
-                } else if($total_quantity > 500) {
-                    $status = "Optimal Month";
-                    $percentage_qty = round(($total_quantity / 600) * 100, 0);
-                    $color = "#12A04B";
-                }
+            $plant_request -> is_verified = 1;
+            $plant_request -> update();
 
-                $harvested_plants_arr[date('F, Y', strtotime($harvested_plant->harvested_date))] = array(
-                    'percentage_qty' => $percentage_qty,
-                    'status' => $status,
-                    'color' => $color
-                );
-            }
+            return response()->json(['status' => 'Success', 'message' => 'You have successfully approved a new plant.', 'timeout' => 1000]);
         } catch(\Exception $e) {
-            return response()->json(['status' => 'failed', 'message' => $e->getMessage(), 'line' => $e->getLine()]);
+            return response()->json(['status' => 'Failed', 'message' => $e->getMessage(), 'timeout' => 3000, 'line' => $e->getLine()]);
         }
+    }
+    
+    public function disapprove()
+    {
+        try {
+            $id = \Request::get('id');
+            $plant_request = PlantRequest::find($id);
+            $file = public_path().$plant_request->image_url;
 
-        return view('plant/detail', compact('plant', 'daysRemaining', 'harvested_plants_arr'));
+            if(\File::exists($file)) {
+                \File::delete($file);
+            }
+            $plant_request -> delete();
+
+            return response()->json(['status' => 'Success', 'message' => 'You have successfully disapproved a new plant.', 'timeout' => 1000]);
+        } catch(\Exception $e) {
+            return response()->json(['status' => 'Failed', 'message' => $e->getMessage(), 'timeout' => 3000, 'line' => $e->getLine()]);
+        }
     }
 }

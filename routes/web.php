@@ -30,6 +30,13 @@ Route::prefix('user')->group(function () {
     Route::get('report/data', 'UserReportController@data');
     Route::get('report/generateExcel', 'UserReportController@generateExcel');
     Route::get('report/generatePDF', 'UserReportController@generatePDF');
+
+    Route::get('/plant_list/details', 'PlantMonitoringController@details');
+    Route::get('/plant_list/fetch', 'PlantMonitoringController@fetch');
+
+    Route::post('/plant-request/store', 'PlantRequestController@store');
+
+    Route::get('/calendar', 'CalendarController@index');
 });
 
 Route::prefix('admin')->group(function () {
@@ -46,8 +53,6 @@ Route::prefix('admin')->group(function () {
         Route::post('/plant_list/delete', 'PlantController@delete');
         Route::get('/plant_list/data', 'PlantController@data');
         Route::get('/plant_list/chart_data', 'PlantController@chart_data');
-        Route::get('/plant_list/fetch', 'PlantController@fetch');
-        Route::get('/plant_list/details', 'PlantController@details');
 
         // growing plants
         Route::get('/growing_plants', 'GrowingPlantController@index');
@@ -145,4 +150,13 @@ Route::prefix('admin')->group(function () {
         Route::get('report/data', 'ReportController@data');
         Route::get('report/generateExcel', 'ReportController@generateExcel');
         Route::get('report/generatePDF', 'ReportController@generatePDF');
+
+        Route::get('/gardening-essential/index', 'GardeningEssentialController@index');
+        Route::get('/gardening-essential/data', 'GardeningEssentialController@data');
+        Route::post('/gardening-essential/store', 'GardeningEssentialController@store');
+        Route::post('/gardening-essential/update', 'GardeningEssentialController@update');
+        Route::post('/gardening-essential/delete', 'GardeningEssentialController@delete');
+
+        Route::post('/plant-request/approve', 'PlantController@approve');
+        Route::post('/plant-request/disapprove', 'PlantController@disapprove');
 });

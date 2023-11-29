@@ -1,6 +1,6 @@
 @extends('layouts/main')
 
-@section('title') Plant List @stop
+@section('title') Vegetable List @stop
 
 @section('contents')
 <div class="page-heading">
@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <span class="bi bi-flower3"></span> Plants List
+                    <span class="bi bi-flower3"></span> Vegetables List
                     <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#createPlant"><span class="fa fa-plus-circle"></span> Add New Plant</button>
                 </h3>
             </div>

@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <span class="fa fa-user-tie"></span> Growing Plants List
+                    <span class="fa fa-user-tie"></span> Growing Vegetables List
                 </h3>
             </div>
             <div class="card-body" id="data-container">

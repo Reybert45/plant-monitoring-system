@@ -60,6 +60,8 @@
     <script src="{{ asset('assets/extensions/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets/static/js/pages/filepond.js') }}"></script>
     <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('fullcalendar/dist/index.global.js') }}"></script>
+    <script src="{{ asset('fullcalendar/dist/index.global.min.js') }}"></script>
     <script type="text/javascript">
         // document.addEventListener('contextmenu', event => event.preventDefault());
         // document.onkeydown = function(e) {
@@ -93,7 +95,7 @@
         
         $("#viewALlPlants").on('shown.bs.modal', function() {
             $.ajax({
-                url: "{{ url('admin/plant_list/fetch') }}",
+                url: "{{ url('user/plant_list/fetch') }}",
                 type: "GET"
             }).then(function(data) {
                 $("#plantsDataContainer").html(data);
@@ -103,7 +105,7 @@
         $("#plantDetails").on("shown.bs.modal", function(e) {
             var btn = $(e.relatedTarget);
             $.ajax({
-                url: "{{ url('admin/plant_list/details') }}",
+                url: "{{ url('user/plant_list/details') }}",
                 type: "GET",
                 data: {
                     id: btn.data('id')
@@ -112,6 +114,101 @@
                 $("#detail-container").html(data);
             });
         });
+
+        $("#viewRequest").on("shown.bs.modal", function(e) {
+            var btn = $(e.relatedTarget);
+            var plant = JSON.parse(atob(btn.data('plants_request')));
+            $("#createForm").find("input[name='name']").val(plant.name);
+            $("#createForm").find("input[name='quantity']").val(plant.quantity);
+            $("#createForm").find("select[name='plant_status_id']").val(plant.plant_status_id);
+            $("#createForm").find("select[name='life_cycle_stage_id']").val(plant.life_cycle_stage_id);
+            $("#createForm").find("select[name='fertilizer_id']").val(plant.fertilizer_id);
+            $("#createForm").find("textarea[name='description']").val(plant.description);
+            $("#createForm").find("textarea[name='location']").val(plant.location);
+            $("#createForm").find("input[name='sow_depth']").val(plant.sow_depth);
+            $("#createForm").find("input[name='distance_between_plants']").val(plant.distance_between_plants);
+            $("#createForm").find("input[name='lowest_temperature']").val(plant.lowest_temperature);
+            $("#createForm").find("input[name='highest_temperature']").val(plant.highest_temperature);
+            $("#createForm").find("input[name='days_before_germination']").val(plant.days_before_germination);
+            $("#approve-btn").attr("data-id", btn.data('id'));
+            $("#disappove-btn").attr("data-id", btn.data('id'));
+
+            flatpickr('.flatpickr-range', {
+                dateFormat: "F j, Y", 
+                mode: 'range',
+                defaultDate: [plant.planting_date + "T00:00:00Z", plant.harvest_date + "T00:00:00Z"]
+            });
+
+            var minDate = moment(new Date()).format('YYYY-MM-DD');
+            flatpickr('.with-time-flatpickr-no-config', {
+                enableTime: true,
+                dateFormat: "Y-m-d h:i:s",
+                minDate: minDate,
+                defaultDate: plant.watering_schedule
+            });
+        });
+
+        $("#approve-btn").click(function() {
+            var id = $(this).data('id');
+            var html = $(this).html();
+            var btn = $(this);
+
+            $(this).prop("disabled", true);
+            $(this).html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+
+            $.ajax({
+                url: "{{ url('admin/plant-request/approve') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                }
+            }).then(function(res) {
+                iziToastAlertMain(res, btn, html);
+            });
+        });
+
+        $("#disappove-btn").click(function() {
+            var id = $(this).data('id');
+            var html = $(this).html();
+            var btn = $(this);
+
+            $(this).prop("disabled", true);
+            $(this).html('<span class="fa fa-spinner fa-spin"></span> Loading...');
+
+            $.ajax({
+                url: "{{ url('admin/plant-request/disapprove') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                }
+            }).then(function(res) {
+                iziToastAlertMain(res, btn, html);
+            });
+        });
+
+        function iziToastAlertMain(res, btn, html) {
+            let iziToastAlertConf = {
+                close: true,
+                displayMode: 2,
+                layout: 2,
+                title: res.status,
+                message: res.message,
+                position: 'topRight',
+                transitionIn: 'bounceInDown',
+                transitionOut: 'flipOutX',
+                timeout: res.timeout,
+            };
+        
+            if (res.status == "Success") {
+                $("#viewRequest").modal("hide");
+                iziToast.success(iziToastAlertConf);
+                window.location.reload();
+            } else {
+                iziToast.error(iziToastAlertConf);
+            }
+        }
     </script>
     @yield('scripts')
 </body>

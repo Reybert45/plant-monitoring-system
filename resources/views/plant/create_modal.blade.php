@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createPlantLabel1"><span class="fa fa-plus-circle"></span> Add New Plant
+                <h5 class="modal-title" id="createPlantLabel1"><span class="fa fa-plus-circle"></span> Add New Vegetable
                 </h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
@@ -115,7 +115,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group has-icon-left">
-                                                                    <label for="plant-status-icon">Plant Status</label>
+                                                                    <label for="plant-status-icon">Vegetable Status</label>
                                                                     <div class="position-relative">
                                                                         <select name="plant_status_id" id="plant-status-icon" class="form-control">
                                                                             <option value="">--</option>

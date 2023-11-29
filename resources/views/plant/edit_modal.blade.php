@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createPlantLabel1"><span class="fa fa-user-edit"></span> Edit Plant
+                <h5 class="modal-title" id="createPlantLabel1"><span class="fa fa-user-edit"></span> Edit Vegetable
                 </h5>
                 <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
@@ -26,7 +26,7 @@
                                                                     <label for="plant-name-icon">Plant Name</label>
                                                                     <div class="position-relative">
                                                                         <input type="text" class="form-control" name="name"
-                                                                            placeholder="Input Plant Name" id="plant-name-icon">
+                                                                            placeholder="Input Vegetable Name" id="plant-name-icon">
                                                                         <div class="form-control-icon">
                                                                             <i class="bi bi-flower1"></i>
                                                                         </div>
@@ -74,7 +74,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group has-icon-left">
-                                                                    <label for="plant-status-icon">Plant Status</label>
+                                                                    <label for="plant-status-icon">Vegetable Status</label>
                                                                     <div class="position-relative">
                                                                         <select name="plant_status_id"
                                                                             id="plant-status-icon" class="form-control">

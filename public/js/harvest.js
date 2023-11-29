@@ -31,7 +31,7 @@ $(document).ready(function() {
                 id: id,
                 harvested_date: $("#harvest-form").find("input[name='harvested_date']").val(),
                 quantity: $("#harvest-form").find("input[name='quantity']").val(),
-                amount: $("#harvest-form").find("input[name='amount']").val(),
+                // amount: $("#harvest-form").find("input[name='amount']").val(),
                 _token: token
             }
         }).then(function(res) {

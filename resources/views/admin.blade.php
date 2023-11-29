@@ -83,7 +83,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Plants Harvest</h4>
+                            <h4>Vegetables Harvest</h4>
                         </div>
                         <div class="card-body">
                             <div id="plant-harvest-chart"></div>

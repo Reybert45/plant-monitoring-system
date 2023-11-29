@@ -18,12 +18,12 @@
                                 </div>
                             </td>
                             <td style="vertical-align: top !important;">
-                                <h5>Plant Name: {{ $plant['name'] }}</h5>
+                                <h5>Vegetable Name: {{ $plant['name'] }}</h5>
                                 <p class="mb-0"><b>Quantity:</b> {{ $plant['quantity'] }}</p>
                                 <p class="mb-0"><b>Planting Date:</b> {{ date('m/d/Y', strtotime($plant['planting_date'])) }}</p>
                                 <p class="mb-0"><b>Harvest Date:</b> {{ date('m/d/Y', strtotime($plant['harvest_date'])) }}</p>
                                 <p class="mb-0"><b>Location:</b> {{ $plant['location'] }}</p>
-                                <p class="mb-0"><b>Plant Status:</b> {{ $plant['plant_status'] }}</p>
+                                <p class="mb-0"><b>Vegetable Status:</b> {{ $plant['plant_status'] }}</p>
                                 <p class="mb-0"><b>Life Cycle Stage:</b> {{ $plant['life_cycle_stage'] }}</p>
                                 <p class="mb-0"><b>Fertilizer:</b> {{ $plant['fertilizer'] }}</p>
                                 <p class="mb-0"><b>Watering Schedule:</b> {{ date('m/d/Y h:i:s A', strtotime($plant['watering_schedule'])) }}</p>

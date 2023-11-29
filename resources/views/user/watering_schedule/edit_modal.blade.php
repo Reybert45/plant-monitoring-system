@@ -19,7 +19,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group has-icon-left">
-                                                            <label for="plant-icon">Plant</label>
+                                                            <label for="plant-icon">Vegetable</label>
                                                             <div class="position-relative">
                                                                 <select name="plant_id" id="plant-icon" class="form-control">
                                                                     <option value="">--</option>

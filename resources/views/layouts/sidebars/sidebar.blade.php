@@ -43,7 +43,7 @@
             <li class="sidebar-item {{ Request::is('admin/plant_list') ? 'active' : '' }}">
                 <a href="{{ url('admin/plant_list') }}" class='sidebar-link'>
                     <i class="bi bi-flower3"></i>
-                    <span>Plants List</span>
+                    <span>Vegetables List</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Request::is('admin/fertilizer_list') ? 'active' : '' }}">
@@ -55,13 +55,19 @@
             <li class="sidebar-item {{ Request::is('admin/growing_plants') ? 'active' : '' }}">
                 <a href="{{ url('admin/growing_plants') }}" class='sidebar-link'>
                     <i class="bi bi-flower2"></i>
-                    <span>Growing Plants</span>
+                    <span>Growing Vegetables</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Request::is('admin/harvested_plants') ? 'active' : '' }}">
                 <a href="{{ url('admin/harvested_plants') }}" class='sidebar-link'>
                     <i class="bi bi-flower1"></i>
-                    <span>Harvested Plants</span>
+                    <span>Harvested Vegetables</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ Request::is('admin/gardening-essential/index') ? 'active' : '' }}">
+                <a href="{{ url('admin/gardening-essential/index') }}" class='sidebar-link'>
+                    <i class="fas fa-seedling"></i>
+                    <span>Gardening Essentials</span>
                 </a>
             </li>
 
@@ -141,7 +147,7 @@
             <li class="sidebar-item {{ Request::is('user/harvest/plant') ? 'active' : '' }}">
                 <a href="{{ url('user/harvest/plant') }}" class='sidebar-link'>
                     <i class="bi bi-flower2"></i>
-                    <span>Harvest Plants</span>
+                    <span>Harvest Vegetables</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Request::is('user/watering_schedule') ? 'active' : '' }}">
@@ -154,6 +160,12 @@
                 <a href="{{ url('user/my_profile') }}" class='sidebar-link'>
                     <i class="fa fa-user-check"></i>
                     <span>My Profile</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{ Request::is('user/calendar') ? 'active' : '' }}">
+                <a href="{{ url('user/calendar') }}" class='sidebar-link'>
+                    <i class="fa fa-calendar"></i>
+                    <span>Calendar</span>
                 </a>
             </li>
             <li class="sidebar-item {{ Request::is('user/report') ? 'active' : '' }}">

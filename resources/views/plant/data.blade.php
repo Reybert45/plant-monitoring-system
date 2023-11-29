@@ -18,7 +18,7 @@
                                 </div>
                             </td>
                             <td style="vertical-align: top !important;">
-                                <h5>Plant Name: {{ $plant['name'] }}</h5>
+                                <h5>Vegetable Name: {{ $plant['name'] }}</h5>
                                 <p class="mb-0" style="text-align: justify;"><b>Decription:</b> {{ $plant['description'] }}</p>
                                 <p class="mb-0"><b>Quantity:</b> {{ $plant['quantity'] }}</p>
                                 <p class="mb-0"><b>Planting Date:</b> {{ date('m/d/Y', strtotime($plant['planting_date'])) }}</p>
