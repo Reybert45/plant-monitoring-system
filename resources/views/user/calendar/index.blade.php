@@ -34,54 +34,47 @@
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: [{
-                    title: 'All Day Event',
-                    start: '2023-02-01',
-                },
+            events: [,
                 {
-                    title: 'Long Event',
+                    title: 'Upo',
                     start: '2023-01-07',
                     end: '2023-01-10'
                 },
                 {
                     groupId: 999,
-                    title: 'Repeating Event',
+                    title: 'String Beans',
                     start: '2023-01-09T16:00:00'
                 },
                 {
                     groupId: 999,
-                    title: 'Repeating Event',
+                    title: 'Pechay',
                     start: '2023-01-16T16:00:00'
                 },
                 {
-                    title: 'Conference',
+                    title: 'Tomato',
                     start: '2023-01-11',
                     end: '2023-01-13'
                 },
                 {
-                    title: 'Meeting',
+                    title: 'Cucumber',
                     start: '2023-01-12T10:30:00',
                     end: '2023-01-12T12:30:00'
                 },
                 {
-                    title: 'Lunch',
+                    title: 'Kangkong',
                     start: '2023-01-12T12:00:00'
                 },
                 {
-                    title: 'Meeting',
+                    title: 'Dynamite',
                     start: '2023-01-12T14:30:00'
                 },
                 {
-                    title: 'Happy Hour',
+                    title: 'Bombay',
                     start: '2023-01-12T17:30:00'
                 },
                 {
-                    title: 'Dinner',
+                    title: 'Eggplant',
                     start: '2023-01-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2023-01-13T07:00:00'
                 }
             ]
         });
