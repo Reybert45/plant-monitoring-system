@@ -34,7 +34,7 @@
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true, // allow "more" link when too many events
-            events: [,
+            events: [
                 {
                     title: 'Upo',
                     start: '2023-01-07',
